@@ -1,0 +1,53 @@
+<div class="wrap">
+    <h1>Tarot - One Card Draw</h1>
+    
+    
+    <div class="controls">
+    <button (click)="drawCard()" [disabled]="isShuffling">
+    {{ isShuffling ? 'Shuffling…' : (drawn ? 'Draw Again' : 'Draw a Card') }}
+    </button>
+    <button (click)="reset()" [disabled]="!drawn || isShuffling">Reset</button>
+    </div>
+    
+    
+    <div class="card-area" aria-live="polite">
+    <div class="card" *ngIf="!drawn">
+    <span class="back">🜃</span>
+    </div>
+    
+    
+    <div class="card result" *ngIf="drawn">
+    <div class="label">
+    <span class="name">{{ drawn.card.name }}</span>
+    <span class="orientation">{{ drawn.reversed ? 'Reversed' : 'Upright' }}</span>
+    </div>
+    
+    
+    <div class="keywords">
+    <strong>Keywords:</strong>
+    <span>{{ drawn.card.keywords.join(', ') }}</span>
+    </div>
+    
+    
+    <div class="meaning" [attr.data-orientation]="drawn.reversed ? 'reversed' : 'upright'">
+    {{ drawn.reversed ? drawn.card.reversed : drawn.card.upright }}
+    </div>
+    
+    
+    <div class="meta">Drawn at: {{ formatTimestamp(drawn.timestamp) }}</div>
+    </div>
+    </div>
+    
+    
+    <section class="history" *ngIf="history.length">
+    <h2>Recent draws</h2>
+    <ol>
+    <li *ngFor="let h of history">
+    <strong>{{ h.card.name }}</strong> ({{ h.reversed ? 'Reversed' : 'Upright' }}) — {{ formatTimestamp(h.timestamp) }}
+    </li>
+    </ol>
+    </section>
+    
+    
+    <p class="hint">Tip: expand the deck later with all 78 cards and images.</p>
+    </div>
