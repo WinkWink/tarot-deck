@@ -33,11 +33,14 @@
     {{ drawn.reversed ? drawn.card.reversed : drawn.card.upright }}
     </div>
     
-    
+    <img
+    [src]="'assets/' + drawn.card.imgUrl " class="img"/>    
     <div class="meta">Drawn at: {{ formatTimestamp(drawn.timestamp) }}</div>
+
     </div>
     </div>
-    
+
+
     
     <section class="history" *ngIf="history.length">
     <h2>Recent draws</h2>
@@ -49,5 +52,4 @@
     </section>
     
     
-    <p class="hint">Tip: expand the deck later with all 78 cards and images.</p>
     </div>
