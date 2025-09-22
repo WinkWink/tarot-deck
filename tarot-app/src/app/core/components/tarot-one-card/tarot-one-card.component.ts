@@ -7,7 +7,7 @@ import { TAROT_DECK, TarotCard } from '../../data/tarot-deck';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './tarot-one-card.component.html',
-  styleUrls: ['./tarot-one-card.component.scss']
+  styleUrls: ['./tarot-one-card.component.scss'],
 })
 export class TarotOneCardComponent implements OnInit {
   deck: TarotCard[] = TAROT_DECK;
@@ -59,7 +59,11 @@ export class TarotOneCardComponent implements OnInit {
     try {
       const raw = localStorage.getItem('tarot-history');
       if (raw) {
-        this.history = JSON.parse(raw) as Array<{ card: TarotCard; reversed: boolean; timestamp: number }>;
+        this.history = JSON.parse(raw) as Array<{
+          card: TarotCard;
+          reversed: boolean;
+          timestamp: number;
+        }>;
       } else {
         this.history = [];
       }

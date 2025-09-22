@@ -1,55 +1,73 @@
 <div class="wrap">
-    <h1>Tarot - One Card Draw</h1>
-    
-    
-    <div class="controls">
-    <button (click)="drawCard()" [disabled]="isShuffling">
-    {{ isShuffling ? 'Shuffling…' : (drawn ? 'Draw Again' : 'Draw a Card') }}
-    </button>
-    <button (click)="reset()" [disabled]="!drawn || isShuffling">Reset</button>
-    </div>
-    
-    
-    <div class="card-area" aria-live="polite">
-    <div class="card" *ngIf="!drawn">
-    <span class="back">🜃</span>
-    </div>
-    
-    
-    <div class="card result" *ngIf="drawn">
-    <div class="label">
-    <span class="name">{{ drawn.card.name }}</span>
-    <span class="orientation">{{ drawn.reversed ? 'Reversed' : 'Upright' }}</span>
-    </div>
-    
-    
-    <div class="keywords">
-    <strong>Keywords:</strong>
-    <span>{{ drawn.card.keywords.join(', ') }}</span>
-    </div>
-    
-    
-    <div class="meaning" [attr.data-orientation]="drawn.reversed ? 'reversed' : 'upright'">
-    {{ drawn.reversed ? drawn.card.reversed : drawn.card.upright }}
-    </div>
-    
-    <img
-    [src]="'assets/' + drawn.card.imgUrl " class="img"/>    
-    <div class="meta">Drawn at: {{ formatTimestamp(drawn.timestamp) }}</div>
+    <!-- accessibility  -->
+  <!-- create flip effect -->
+  <!-- add media queries/breakpoints  -->
+  <!-- deploy -->
+  <!-- make a mobile app -->
+ <!-- describe inner workings of app  -->
+  <!-- connect to AI api to show theme of cards drawn? -->
 
-    </div>
-    </div>
+  <h2>Select A Card</h2>
 
+<div class="card-container">
+    <div class="deck-of-cards" (click)="drawCard()">
 
-    
-    <section class="history" *ngIf="history.length">
+        <div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+            <div class="card-back"></div>
+        </div>
+      </div>
+
+      <div class="card result" *ngIf="drawn">
+        <img
+        [src]="'assets/' + drawn.card.imgUrl"
+        class="card__img"
+        [ngClass]="drawn.reversed ? 'reversed' : 'upright'"
+      />
+        <div class="card__description">
+            <div class="card__label">
+                <span class="card__name">{{ drawn.card.name }}<span class="card__orientation">({{ drawn.reversed ? 'Reversed' : 'Upright' }})</span></span>
+
+            </div>
+        
+              <div class="card__keywords">
+                <strong>Keywords:</strong>
+                <span> {{ drawn.card.keywords.join(', ') }}</span>
+              </div>
+        
+              <div class="card__meaning" [attr.data-orientation]="drawn.reversed ? 'reversed' : 'upright'">
+                {{ drawn.reversed ? drawn.card.reversed : drawn.card.upright }}
+              </div>
+        
+      
+              <div class="card__meta">Drawn at: {{ formatTimestamp(drawn.timestamp) }}</div>
+        </div>
+      </div>
+</div>
+
+  <!-- <section class="history" *ngIf="history.length">
     <h2>Recent draws</h2>
     <ol>
-    <li *ngFor="let h of history">
-    <strong>{{ h.card.name }}</strong> ({{ h.reversed ? 'Reversed' : 'Upright' }}) — {{ formatTimestamp(h.timestamp) }}
-    </li>
+      <li *ngFor="let h of history">
+        <strong>{{ h.card.name }}</strong> ({{ h.reversed ? 'Reversed' : 'Upright' }}) —
+        {{ formatTimestamp(h.timestamp) }}
+      </li>
     </ol>
-    </section>
-    
-    
-    </div>
+  </section> -->
+</div>

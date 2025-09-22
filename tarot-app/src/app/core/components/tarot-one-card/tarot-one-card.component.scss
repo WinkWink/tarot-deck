@@ -1,106 +1,197 @@
-/* tarot-one-card.component.scss */
-
 /* Container wrap */
 .wrap {
-  max-width: 700px;
+  max-width: 1200px;
   margin: 2rem auto;
   padding: 1.5rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
 }
 
-/* Header */
-h1 {
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-/* Controls (buttons) */
-.controls {
-  display: flex;
-  gap: 0.75rem;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-}
-
-button {
-  padding: 0.65rem 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-
-  &:hover:not([disabled]) {
-    background-color: #f0f0f0;
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: default;
-  }
-}
-
-/* Card display area */
-.card-area {
-  perspective: 1000px;
-  min-height: 180px;
-}
-
-.card {
-  border: 1px solid #ddd;
-  border-radius: 0.75rem;
-  padding: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  min-height: 180px;
+.card-container {
   display: grid;
-  align-content: center;
-  transition: transform 0.3s ease;
-  background-color: #fff;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 
-  &.result {
-    border-color: #bbb;
+  .deck-of-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+    position: relative;
+    height: 25rem;
+    grid-area: 1 / 1 / 2 / 2;
+
+    .card-back {
+      position: absolute;
+      top: 0;
+      border: 2px black solid;
+      width: 200px;
+      height: 300px;
+      border-radius: 0.25rem;
+      background-image: url('../../../../assets/back.png');
+      background-size: cover;
+    }
+
+    .card-back:hover {
+      width: 205px;
+      height: 305px;
+    }
+
+    .card-back:nth-of-type(1) {
+      top: 0.25rem;
+      left: 0.25rem;
+    }
+
+    .card-back:nth-of-type(2) {
+      top: 0.5rem;
+      left: 0.5rem;
+    }
+
+    .card-back:nth-of-type(3) {
+      top: 0.75rem;
+      left: 0.75rem;
+    }
+    .card-back:nth-of-type(4) {
+      top: 1rem;
+      left: 1rem;
+    }
+    .card-back:nth-of-type(5) {
+      top: 1.25rem;
+      left: 1.25rem;
+    }
+    .card-back:nth-of-type(6) {
+      top: 1.5rem;
+      left: 1.5rem;
+    }
+    .card-back:nth-of-type(7) {
+      top: 1.75rem;
+      left: 1.75rem;
+    }
+
+    .card-back:nth-of-type(8) {
+      top: 2rem;
+      left: 2rem;
+    }
+
+    .card-back:nth-of-type(9) {
+      top: 2.25rem;
+      left: 2.25rem;
+    }
+
+    .card-back:nth-of-type(10) {
+      top: 2.5rem;
+      left: 2.5rem;
+    }
+    .card-back:nth-of-type(11) {
+      top: 2.75rem;
+      left: 2.75rem;
+    }
+    .card-back:nth-of-type(12) {
+      top: 3rem;
+      left: 3rem;
+    }
+    .card-back:nth-of-type(13) {
+      top: 3.25rem;
+      left: 3.25rem;
+    }
+    .card-back:nth-of-type(14) {
+      top: 3.5rem;
+      left: 3.5rem;
+    }
+    .card-back:nth-of-type(15) {
+      top: 3.5rem;
+      left: 3.5rem;
+    }
+    .card-back:nth-of-type(16) {
+      top: 3.75rem;
+      left: 3.75rem;
+    }
+    .card-back:nth-of-type(17) {
+      top: 4rem;
+      left: 4rem;
+    }
+    .card-back:nth-of-type(18) {
+      top: 4.25rem;
+      left: 4.25rem;
+    }
   }
-}
 
-.back {
-  font-size: 3rem;
-  opacity: 0.6;
-  display: grid;
-  place-items: center;
-}
+  .card {
+    border-radius: 0.75rem;
+    display: grid;
+    align-content: center;
+    transition: transform 0.3s ease;
+    background-color: #fff;
+    grid-area: 1 / 2 / 2 / 3;
 
-/* Card result content */
-.result .label {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
+    .card.result img.reversed {
+      transform: rotate(180deg);
+    }
 
-.keywords {
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
-  opacity: 0.85;
-}
+    &__img {
+      height: 18.75rem;
+      border-radius: 0.25rem;
+    }
+    &__img.reversed {
+      transform: rotate(180deg);
+    }
 
-.meaning {
-  line-height: 1.5;
-  font-size: 1rem;
+    &__description {
+      width: 100%;
+    }
 
-  &[data-orientation='reversed'] {
-    font-style: italic;
-    opacity: 0.95;
+    &__name {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    &__result {
+      display: flex;
+      gap: 2rem;
+      padding-top: 4.25rem;
+    }
+
+    /* Card result content */
+    &__result &__label {
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      width: 100%;
+    }
+
+    &__keywords {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      opacity: 0.85;
+    }
+
+    &__orientation {
+      font-size: 0.75rem;
+    }
+
+    &__meaning {
+      line-height: 1.5;
+      font-size: 1rem;
+
+      &[data-orientation='reversed'] {
+        font-style: italic;
+        opacity: 0.95;
+      }
+    }
+
+    &__meta {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      opacity: 0.75;
+    }
   }
-}
-
-.meta {
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-  opacity: 0.75;
 }
 
 /* History list */
@@ -129,20 +220,4 @@ button {
       }
     }
   }
-}
-
-/* Small hint text */
-.hint {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  opacity: 0.7;
-  text-align: center;
-}
-
-.card.result .image img.reversed {
-  transform: rotate(180deg);
-}
-
-.img {
-  width: 200px;
 }

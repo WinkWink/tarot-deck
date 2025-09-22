@@ -197,7 +197,7 @@ export const TAROT_DECK: TarotCard[] = [
     keywords: ['inspiration', 'potential'],
     upright: 'Spark of creativity or new idea.',
     reversed: 'Delay, lack of direction.',
-    imgUrl: '',
+    imgUrl: 'ace-of-wands.png',
   },
   {
     name: 'Two of Wands',
