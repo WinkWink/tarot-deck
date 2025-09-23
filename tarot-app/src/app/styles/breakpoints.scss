@@ -1,0 +1,64 @@
+$md: 600px !default;
+$lg: 906px !default;
+$xl: 1240px !default;
+$xxl: 1440px !default;
+$xxxl: 1680px !default;
+
+$valid-breakpoints: (
+  'baseline': null,
+  'md': $md,
+  'lg': $lg,
+  'xl': $xl,
+  'xxl': $xxl,
+  'xxxl': $xxxl,
+);
+
+@mixin md {
+  @media (min-width: $md) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: $lg) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: $xl) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  @media (min-width: $xxl) {
+    @content;
+  }
+}
+
+@mixin xxxl {
+  @media (min-width: $xxxl) {
+    @content;
+  }
+}
+
+@mixin between($min, $max) {
+  @media screen and (min-width: $min) and (max-width: calc($max + 1px)) {
+    @content;
+  }
+}
+
+@mixin single-value($property, $value-map) {
+  @each $breakpoint, $value in $value-map {
+    @if list.index(map.keys($valid-breakpoints), $breakpoint) {
+      @if $breakpoint == 'baseline' {
+        #{$property}: $value;
+      } @else {
+        @media (min-width: map.get($valid-breakpoints, $breakpoint)) {
+          #{$property}: $value;
+        }
+      }
+    }
+  }
+}

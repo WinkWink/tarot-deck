@@ -1,0 +1,28 @@
+@use '../styles/breakpoints.scss' as breakpoints;
+
+@mixin grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: toRem(16);
+  margin: 0 auto;
+  padding: 0 toRem(24);
+  box-sizing: border-box;
+  width: 100%;
+
+  @include breakpoints.md {
+    grid-template-columns: repeat(8, 1fr);
+    grid-column-gap: toRem(24);
+    padding: 0 toRem(48);
+  }
+  @include breakpoints.lg {
+  }
+  @include breakpoints.xl {
+    grid-template-columns: repeat(12, 1fr);
+    padding: 0 toRem(80);
+  }
+  @include breakpoints.xxl {
+    max-width: toRem(1280);
+    padding: 0;
+  }
+}
